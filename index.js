@@ -53,11 +53,13 @@ Prompt.prototype.askNestedQuestion = function () {
 
 Prompt.prototype._run = function (cb) {
   this.done = cb;
-  this.render();
+  this.clean();
   this.askForLoop();
   return this;
 };
 
-Prompt.prototype.render = function () {
-  this.screen.render("$");
+Prompt.prototype.clean = function () {
+  this.screen.rl.setPrompt('');
+  this.screen.rl.output.write('');
+  this.screen.rl.output.mute();
 };
